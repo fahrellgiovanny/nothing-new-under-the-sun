@@ -8,9 +8,9 @@
 
 ## Purpose
 
-Many AI coding agents start by writing code. This skill starts with a
-different rule: **someone has already solved most problems.** Search
-existing solutions before you create new ones.
+AI coding agents start by writing code. This skill starts with a
+different rule: **existing solutions already cover most problems.**
+Search existing solutions before you create new ones.
 
 ## Decision ladder
 
@@ -158,7 +158,8 @@ This skill inverts that default. It tells the agent: find the existing
 solution before you create one.
 
 The philosophy: **there is nothing new under the sun.** Your problem is
-not unique. Someone solved most of it. Find them before you build.
+not unique. Existing work covers most of it. Find that work before you
+build.
 
 ## Repository structure
 
