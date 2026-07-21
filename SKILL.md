@@ -1,13 +1,13 @@
 ---
 name: nothing-new-under-the-sun
 description: >
-  Research-first mindset that runs BEFORE any build decision, new dependency,
-  new system, or feature request. Search existing solutions (codebase,
-  dependencies, packages, GitHub repos, APIs, SaaS, templates) before writing
-  code. Output a REUSE / USE / FORK / BUY / INTEGRATE / BUILD verdict with an
-  evidence matrix. Trigger when someone proposes a new feature, asks to add a
-  dependency, says "build X", "add X", "we need X", or any time greenfield
-  code is considered.
+  Research-first scouting agent skill that runs BEFORE any build decision,
+  new dependency, new system, or feature request. Search existing solutions
+  (codebase, dependencies, packages, GitHub repos, APIs, SaaS, templates)
+  before writing code. Output a REUSE / USE / FORK / BUY / INTEGRATE / BUILD
+  verdict with an evidence matrix. Trigger when someone proposes a new
+  feature, asks to add a dependency, says "build X", "add X", "we need X",
+  or any time greenfield code is considered.
 license: MIT
 metadata:
   author: fahrellgiovanny

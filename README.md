@@ -1,6 +1,6 @@
 # There Is Nothing New Under The Sun
 
-**A research-first agent skill. Search existing solutions before you add code or dependencies.**
+**A research-first scouting agent skill. Search existing solutions before you add code or dependencies.**
 
 [![skills.sh](https://skills.sh/b/fahrellgiovanny/nothing-new-under-the-sun)](https://skills.sh/fahrellgiovanny/nothing-new-under-the-sun)
 
@@ -67,10 +67,11 @@ Agents without native skill directories (Aider, for example) can read the
 prompt with `/read <path/to/SKILL.md>`. The Markdown prompt works with
 any LLM.
 
-### Dedicated read-only agent
+### Dedicated scouting agent
 
 Copy `agents/nothing-new-under-the-sun.md` to the agent directory of your
-platform. Configure the platform to deny the write, edit, and package
+platform. The scouting agent is read-only. It cannot write code or install
+packages. Configure the platform to deny the write, edit, and package
 install permissions.
 
 ## Workflow
@@ -145,8 +146,8 @@ For agents without native skill support, paste the prompt or use the
 | **Use for** | Daily development sessions | Auditable decisions |
 | **Permissions** | Set in the host platform | Set in the agent definition |
 
-Use the skill for daily work. Dispatch the agent when the read-only
-boundary must be guaranteed.
+Use the skill for daily work. Dispatch the scouting agent when the
+read-only boundary must be guaranteed.
 
 ## Philosophy
 
