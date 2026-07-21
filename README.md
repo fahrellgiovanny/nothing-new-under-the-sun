@@ -2,6 +2,8 @@
 
 **A research-first scouting agent skill. Search existing solutions before you add code or dependencies.**
 
+[![skills.sh](https://skills.sh/b/fahrellgiovanny/nothing-new-under-the-sun)](https://skills.sh/fahrellgiovanny/nothing-new-under-the-sun/nothing-new-under-the-sun)
+
 ---
 
 ## Purpose
