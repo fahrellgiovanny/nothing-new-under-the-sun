@@ -166,7 +166,9 @@ build.
 nothing-new-under-the-sun/
 ├── README.md
 ├── LICENSE
-├── SKILL.md
+├── skills/
+│   └── nothing-new-under-the-sun/
+│       └── SKILL.md
 └── agents/
     └── nothing-new-under-the-sun.md
 ```
