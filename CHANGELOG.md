@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.0.2
+
+### Changed
+
+- Tightened trigger rules to reduce over-triggering on trivial work.
+- Expanded skip rules for single-line fixes, existing imports, helper
+  extraction, documentation-only edits, style, and lint.
+- Replaced the loose recommendation section with a required output schema.
+- Strengthened the confidence rubric with concrete evidence requirements.
+- Kept the read-only agent permission block unchanged.
+
+### Added
+
+- Required output sections: Context, Tier search, Evidence matrix,
+  Recommendation, Why this wins, Confidence, Re-evaluation trigger, and
+  Missing information.
+- Two scenario tests for v1.0.2: hard output schema and trivial-work skip.
+
+### Migration
+
+- No permission migration is required.
+- Existing users can reinstall or update the skill to get the v1.0.2 prompt.
+
 ## v1.0.1
 
 ### Changed

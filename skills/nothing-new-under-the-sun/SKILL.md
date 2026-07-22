@@ -5,14 +5,15 @@ description: >
   new dependency, new system, or feature request. Search existing solutions
   (codebase, dependencies, packages, GitHub repos, APIs, SaaS, templates)
   before writing code. Output a REUSE / USE / FORK / BUY / INTEGRATE / BUILD
-  recommendation with an evidence matrix. Uses five-component long-term
-  business value framing. Trigger when someone proposes a new feature, asks
-  to add a dependency, says "build X", "add X", "we need X", or any time
-  greenfield code is considered.
+  recommendation with a required schema and evidence matrix. Uses
+  five-component long-term business value framing. Trigger on new features,
+  new systems, new dependencies, build-vs-buy decisions, or "build/add/we
+  need X" requests. Do not trigger for bug fixes, small refactors, routine
+  edits, docs, style/lint, or imports already in use.
 license: MIT
 metadata:
   author: fahrellgiovanny
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # There Is Nothing New Under The Sun
@@ -38,18 +39,16 @@ and adaptability. Reliability matters in every situation.
 
 ## When to use
 
-- Someone proposes a new feature, system, helper, or module.
-- Someone asks to add a dependency.
+- Someone proposes a new feature, system, dependency, service, API, or module.
+- Someone asks whether to build, buy, use, fork, integrate, or add a dependency.
 - Someone says "we need X", "build X", "add X", or "write a helper for X."
-- An architecture decision needs evidence before committing to new code.
-- Any request that would expand the surface area of existing code.
+- A request creates a boundary, owner, runtime dependency, or maintenance cost.
 
 ## When NOT to use
 
-- Bug fixes inside existing files (no new system being proposed).
-- Pure refactors that preserve behavior and dependencies.
-- Content or data entry into existing modules.
-- Routine edits where the module already exists.
+- Bug fixes, single-line fixes, or imports already in use.
+- Pure refactors, helper extraction, or routine edits in existing modules.
+- Content, data, or documentation edits.
 - Style or lint changes.
 
 ## Establish context first
@@ -144,14 +143,20 @@ Days (USE/BUY), weeks (INTEGRATE), months (BUILD), years (large BUILD).
 You are a senior engineer addressing another senior engineer. Give them
 everything they must know to accept or reject with confidence.
 
-The recommendation must cite the five components. It must include:
+The recommendation must cite the five components. Output exactly this schema:
 
-- The tier recommendation.
-- Why this wins — one concrete reason per relevant component.
-- Confidence: HIGH (strong evidence), MEDIUM (reasonable evidence,
-    known unknowns), LOW (thin evidence).
-- Re-evaluation cadence or trigger.
-- Missing information, if any.
+1. **Context** — six answers plus constraints.
+2. **Tier search** — REUSE / USE / FORK / BUY / INTEGRATE / BUILD, with citations.
+3. **Evidence matrix** — top 3 viable candidates. Fill all 5 columns.
+4. **Recommendation** — one tier or compound tiers.
+5. **Why this wins** — concrete reasons tied to the components.
+6. **Confidence** — HIGH, MEDIUM, or LOW. Use the rubric below.
+7. **Re-evaluation trigger** — date, scale, event, or failure mode.
+8. **Missing information** — unknowns that matter.
+
+Rubric: HIGH = complete context, exact citations, complete matrix, minor
+unknowns. MEDIUM = exact citations with known unknowns. LOW = missing
+context, weak citations, thin candidates, or large unknowns.
 
 ## Compound recommendations
 
@@ -199,14 +204,9 @@ channel is unavailable, record `unavailable: <reason>`.
 
 ## Agent versus skill
 
-This prompt exists in two forms:
-
-- **Skill** (this file) — loaded during normal sessions. Research runs
-  before implementation. A BUILD recommendation unlocks code generation.
-- **Agent** — a permission-bound definition that enforces read-only
-  research. The agent cannot edit files, install packages, or run writes.
-  Use when research must be auditable or the read-only boundary must be
-  guaranteed.
+The skill loads during normal sessions. A BUILD recommendation unlocks code
+generation. The agent enforces read-only research. Use it when research must
+be auditable or the read-only boundary must be guaranteed.
 
 ## What to do next
 

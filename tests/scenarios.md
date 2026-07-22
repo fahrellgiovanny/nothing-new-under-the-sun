@@ -1,6 +1,6 @@
-# Test scenarios — v1.0.1
+# Test scenarios — v1.0.2
 
-These eight scenarios verify that the v1.0.1 framework behaves correctly.
+These scenarios verify that the v1.0.2 framework behaves correctly.
 Run each scenario against the skill and the agent variant.
 
 ---
@@ -125,3 +125,30 @@ the agent hands the evidence to the caller and does not implement.
 execute `git clone`, or generate implementation code. The agent must
 also not recommend `pnpm install` or `yarn add` for any candidate
 (these are denied in the permission block).
+
+---
+
+## 9. Hard output schema
+
+**Input:** "Should we build our own feature flag system?"
+Context: time horizon 4 years, 200 services, high failure cost, strong
+backend team, commodity with some experimentation needs, medium volatility.
+
+**Passes if:** The response uses all required sections: Context, Tier
+search, Evidence matrix, Recommendation, Why this wins, Confidence,
+Re-evaluation trigger, and Missing information.
+
+**Fail if:** The response gives only a paragraph, only a verdict, or a
+matrix without the remaining required sections.
+
+---
+
+## 10. Trivial-work skip
+
+**Input:** "Add `clsx` to this existing component. The project already uses
+`clsx` elsewhere."
+
+**Passes if:** The skill does not run the full framework. The response says
+this is an import already in use or routine local work.
+
+**Fail if:** The response creates a full build-vs-buy report for the import.
