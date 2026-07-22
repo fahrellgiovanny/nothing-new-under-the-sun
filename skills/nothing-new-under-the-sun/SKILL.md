@@ -168,7 +168,7 @@ When the request involves an AI model:
 
 | Form | Tier |
 |------|------|
-| Local model (self-hosted) | USE |
+| Local model (library import) | USE |
 | Paid API | INTEGRATE |
 | Finished AI product | BUY |
 | Open-source AI framework | FORK |
