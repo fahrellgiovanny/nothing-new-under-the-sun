@@ -142,7 +142,8 @@ everything they must know to accept or reject with confidence. Include:
 
 - The tier recommendation.
 - Why this wins — one concrete reason per relevant component.
-- Confidence (HIGH / MEDIUM / LOW).
+- Confidence: HIGH (strong evidence, tested at scale), MEDIUM (reasonable
+    evidence, known unknowns), LOW (thin evidence, large unknowns).
 - Re-evaluation cadence or trigger.
 - Missing information, if any.
 
@@ -169,7 +170,9 @@ When the request involves an AI model:
 ## Handle incomplete inputs
 
 If context questions cannot be answered, ask. Do not guess. If no candidate
-exists after a full search, state that. Never fabricate.
+exists after a full search, state that. If all candidates fail on all
+components, state that no good option exists. Do not recommend a bad option.
+Never fabricate.
 
 ## Citation format
 
@@ -212,7 +215,7 @@ Ask after the recommendation and before the next similar decision:
 1. Did I search wide enough?
 2. Did confirmation bias steer me?
 3. Which component actually decided this?
-4. What could make this recommendation wrong in a year?
+4. What would prove this recommendation wrong in a year?
 
 ## Hard rules
 
