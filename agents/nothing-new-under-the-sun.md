@@ -142,8 +142,8 @@ everything they must know to accept or reject with confidence. Include:
 
 - The tier recommendation.
 - Why this wins — one concrete reason per relevant component.
-- Confidence: HIGH (strong evidence, tested at scale), MEDIUM (reasonable
-    evidence, known unknowns), LOW (thin evidence, large unknowns).
+- Confidence: HIGH (strong evidence), MEDIUM (reasonable evidence,
+    known unknowns), LOW (thin evidence).
 - Re-evaluation cadence or trigger.
 - Missing information, if any.
 
@@ -205,7 +205,7 @@ After the recommendation:
 
 1. Write a short proposal: the decision, the evidence, the trigger.
 2. Plan the smallest testable increment: POC (BUY/INTEGRATE), spike
-   (REUSE/USE/FORK), or technical-risk increment (BUILD).
+   (REUSE/USE/FORK), or risk proof (BUILD).
 3. Set a re-evaluation date proportional to the time horizon.
 
 ## The good habit
