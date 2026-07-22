@@ -124,6 +124,9 @@ asks for it.
 
 # Why this wins
 - Reliability: next-auth proven at scale (5M weekly, no critical CVE).
+- Strategic value: identity is a commodity. Engineering effort goes to
+  product work.
+- Adaptability: adapters cover OAuth, passkeys, SAML.
 - TCO: near zero license; no per-MAU bill.
 - Speed to value: one week to production.
 ```
@@ -139,9 +142,12 @@ algorithm?
 BUILD the matching engine. INTEGRATE routing and mapping APIs.
 
 # Why this wins
+- Reliability: proven only through iteration; every competitor faced the
+  same risk.
 - Strategic value: matching IS the product. Only BUILD supplies this.
 - Adaptability: BUILD gives full control; strategy changes weekly.
 - TCO: high build cost but zero seller cost; no lock-in.
+- Speed to value: 6-12 months to MVP; compounding gains over 10 years.
 ```
 
 ## Agent compatibility

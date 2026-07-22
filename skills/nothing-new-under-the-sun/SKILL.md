@@ -148,7 +148,8 @@ The recommendation must cite the five components. It must include:
 
 - The tier recommendation.
 - Why this wins — one concrete reason per relevant component.
-- Confidence (HIGH / MEDIUM / LOW).
+- Confidence: HIGH (strong evidence), MEDIUM (reasonable evidence,
+    known unknowns), LOW (thin evidence).
 - Re-evaluation cadence or trigger.
 - Missing information, if any.
 
@@ -175,9 +176,10 @@ When the request involves an AI model:
 
 ## Handle incomplete inputs
 
-If context questions cannot be answered, ask the user. Do not guess. If no
-candidate exists after a full search, state that. Never fabricate a
-candidate or a verdict.
+If context questions cannot be answered, ask. Do not guess. If no candidate
+exists after a full search, state that. If all candidates fail on all
+components, state that no good option exists and do not recommend a bad
+option. Never fabricate a candidate or a verdict.
 
 ## Citation format
 
@@ -208,11 +210,9 @@ This prompt exists in two forms:
 
 ## What to do next
 
-1. Write a short proposal: the decision, the evidence, the re-evaluation
-   trigger.
-2. Plan the smallest testable increment: POC (BUY/INTEGRATE), a spike
-   (REUSE/USE/FORK), or the smallest increment that proves technical risk
-   (BUILD).
+1. Write a short proposal: the decision, the evidence, the trigger.
+2. Plan the smallest testable increment: POC (BUY/INTEGRATE), spike
+   (REUSE/USE/FORK), or risk proof (BUILD).
 3. Set a re-evaluation date proportional to the time horizon.
 
 ## The good habit
@@ -223,7 +223,7 @@ similar decision:
 1. Did I search wide enough?
 2. Did confirmation bias steer me?
 3. Which component actually decided this?
-4. What could make this recommendation wrong in a year?
+4. What would prove this recommendation wrong in a year?
 
 ## Hard rules
 
