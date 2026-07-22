@@ -14,6 +14,10 @@ new code.** Search existing solutions. Compare them on reliability,
 strategic value, adaptability, total cost of ownership, and speed to
 value. Then choose the tier that maximizes value for your situation.
 
+The skill now uses a required output schema. Each recommendation includes
+context, tier search, evidence matrix, recommendation, reasons, confidence,
+re-evaluation trigger, and missing information.
+
 Unlike cost-only build-vs-buy analyzers, this skill evaluates five
 components of business value. A commodity (like auth or PDF generation)
 wins on TCO and speed — USE or BUY the best seller. A core competency
@@ -36,6 +40,9 @@ BUILD     — viable when no earlier tier fits. Cite the search.
 
 The order is a search order. It is not a preference order. Your
 situation determines which tier maximizes value.
+
+Skip the ladder for small local changes. Do not run it for bug fixes,
+single-line fixes, existing imports, routine refactors, docs, style, or lint.
 
 ## Install
 
@@ -106,8 +113,16 @@ The agent fills a five-column evidence matrix for every candidate:
 | Candidate | Reliability | Strategic value | Adaptability | TCO | Speed to value |
 |-----------|-------------|-----------------|--------------|-----|----------------|
 
-The agent then returns one recommendation with a confidence level and a
-re-evaluation trigger.
+The agent then returns one recommendation with this required schema:
+
+1. Context.
+2. Tier search.
+3. Evidence matrix.
+4. Recommendation.
+5. Why this wins.
+6. Confidence.
+7. Re-evaluation trigger.
+8. Missing information.
 
 ## Examples
 
