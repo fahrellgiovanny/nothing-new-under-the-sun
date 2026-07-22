@@ -1,6 +1,6 @@
 # There Is Nothing New Under The Sun
 
-**A research-first scouting agent skill. Search existing solutions before you add code or dependencies.**
+**A research-first scouting agent skill. Maximize long-term business value before you add code or dependencies.**
 
 [![skills.sh](https://skills.sh/b/fahrellgiovanny/nothing-new-under-the-sun)](https://skills.sh/fahrellgiovanny/nothing-new-under-the-sun/nothing-new-under-the-sun)
 
@@ -9,23 +9,33 @@
 ## Purpose
 
 AI coding agents start by writing code. This skill starts with a
-different rule: **existing solutions already cover most problems.**
-Search existing solutions before you create new ones.
+different rule: **evaluate long-term business value before you create
+new code.** Search existing solutions. Compare them on reliability,
+strategic value, adaptability, total cost of ownership, and speed to
+value. Then choose the tier that maximizes value for your situation.
+
+Unlike cost-only build-vs-buy analyzers, this skill evaluates five
+components of business value. A commodity (like auth or PDF generation)
+wins on TCO and speed — USE or BUY the best seller. A core competency
+(like a matching engine or recommendation system) wins on strategic
+value and adaptability — BUILD or FORK. The framework has no preferred
+answer. Your situation determines the right tier.
 
 ## Decision ladder
 
-Start at the top. Move down only when a step fails.
+Start at the top. Move down only when a step finds no viable candidate.
 
 ```
 REUSE     — a solution exists in the repository or the organization.
 USE       — a dependency in the project manifest solves it.
-FORK      — an open-source project solves it. Vendor or fork the code.
+FORK      — an open-source project solves it. Vendor or fork.
 BUY       — a SaaS product solves it.
 INTEGRATE — an API solves it.
-BUILD     — only now. Write justification for the new code.
+BUILD     — viable when no earlier tier fits. Cite the search.
 ```
 
-BUILD is the last choice. Do not start with it.
+The order is a search order. It is not a preference order. Your
+situation determines which tier maximizes value.
 
 ## Install
 
@@ -76,7 +86,7 @@ install permissions.
 
 ## Workflow
 
-This skill directs the agent through six search stages:
+The skill directs the agent through seven search stages:
 
 1. **Search the repository.** The solution may already exist in the
    codebase.
@@ -89,26 +99,49 @@ This skill directs the agent through six search stages:
 5. **Search for APIs and SaaS products.** Some problems do not need code.
 6. **Search for examples and templates.** Fork or adapt an existing
    reference.
+7. **Check the license.** Verify compatibility with the project.
 
-The agent produces an evidence matrix for every candidate.
+The agent fills a five-column evidence matrix for every candidate:
 
-| Name | URL | Popularity | Maintenance | License | Effort |
-|---|---|---|---|---|---|
-| candidate-a | github.com/... | 5K stars | active since 2024 | MIT | S |
-| candidate-b | npmjs.com/... | 2M DL/week | last commit 2023 | Apache-2.0 | M |
+| Candidate | Reliability | Strategic value | Adaptability | TCO | Speed to value |
+|-----------|-------------|-----------------|--------------|-----|----------------|
 
-The agent then returns one verdict with justification.
+The agent then returns one recommendation with a confidence level and a
+re-evaluation trigger.
 
-## Example
+## Examples
+
+### Commodity: auth
 
 ```
-User: "We need a rate limiter for the API."
-Agent (skill loaded):
-  REUSE  — No rate limiter exists in the codebase.
-  USE    — express-rate-limit is already in node_modules,
-           version 7.x, MIT license. The package is mature
-           (3K stars, updated last week). Use it directly.
-  Verdict: USE express-rate-limit. No new code or new dependency needed.
+# Request
+Should we build our own auth, or use Auth0?
+
+# Recommendation (compound)
+USE next-auth for the commodity slice. Small BUILD layer over next-auth
+callbacks for enterprise SSO, only when the first enterprise customer
+asks for it.
+
+# Why this wins
+- Reliability: next-auth proven at scale (5M weekly, no critical CVE).
+- TCO: near zero license; no per-MAU bill.
+- Speed to value: one week to production.
+```
+
+### Core competency: matching algorithm
+
+```
+# Request
+Should a ride-hailing company build or buy its driver-rider matching
+algorithm?
+
+# Recommendation (compound)
+BUILD the matching engine. INTEGRATE routing and mapping APIs.
+
+# Why this wins
+- Strategic value: matching IS the product. Only BUILD supplies this.
+- Adaptability: BUILD gives full control; strategy changes weekly.
+- TCO: high build cost but zero seller cost; no lock-in.
 ```
 
 ## Agent compatibility
@@ -142,7 +175,7 @@ For agents without native skill support, paste the prompt or use the
 | | Skill | Agent |
 |---|---|---|
 | **Loads when** | Before a build proposal, automatically | When invoked or dispatched |
-| **Writes code** | Yes, after a justified BUILD verdict | No |
+| **Writes code** | Yes, after a justified BUILD recommendation | No |
 | **Use for** | Daily development sessions | Auditable decisions |
 | **Permissions** | Set in the host platform | Set in the agent definition |
 
@@ -155,12 +188,12 @@ AI coding agents write code first. They produce 50 lines for a problem
 that one import solves. They build an auth system when three mature
 libraries exist. They build a service when an API already does the job.
 
-This skill inverts that default. It tells the agent: find the existing
-solution before you create one.
+This skill inverts that default. It tells the agent: evaluate long-term
+business value before you create new code.
 
 The philosophy: **there is nothing new under the sun.** Your problem is
-not unique. Existing work covers most of it. Find that work before you
-build.
+not unique. Existing work covers most of it. Find that work and compare
+its value before you build.
 
 ## Repository structure
 
@@ -168,11 +201,14 @@ build.
 nothing-new-under-the-sun/
 ├── README.md
 ├── LICENSE
+├── CHANGELOG.md
 ├── skills/
 │   └── nothing-new-under-the-sun/
 │       └── SKILL.md
-└── agents/
-    └── nothing-new-under-the-sun.md
+├── agents/
+│   └── nothing-new-under-the-sun.md
+└── tests/
+    └── scenarios.md
 ```
 
 ## Prior art
@@ -184,13 +220,21 @@ analysis. Direct influences:
 - Build-versus-buy analysis in enterprise architecture.
 - Prior-art search in patent and open-source contexts.
 - Dependency-check-first workflows in modern package managers.
+- Wardley Mapping and DDD Core/Supporting/Generic classification.
 
-Related skills use different approaches. `search-first` focuses on package
-and MCP discovery. `skill-scout` evaluates capability gaps. `before-you-build`
-runs product pre-mortems. `research` provides citation guidance.
+Related skills use different approaches. This skill differs from all of
+them. It requires a six-tier recommendation, a five-component evidence
+matrix, and strict citation format.
 
-This skill differs from all of them. It requires a six-outcome verdict and
-an auditable evidence matrix.
+Enterprise-grade weighted-scoring tools (Agensi Build-vs-Buy Analyzer) and
+strategic modeling frameworks (Wardley Mapping) exist. This skill targets a
+different moment: the instant before an AI agent or engineer writes new
+code. It runs in one turn and produces a defensible recommendation.
+
+## Feedback
+
+Report issues and request features at
+[github.com/fahrellgiovanny/nothing-new-under-the-sun/issues](https://github.com/fahrellgiovanny/nothing-new-under-the-sun/issues).
 
 ## Security
 
