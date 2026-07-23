@@ -88,8 +88,16 @@ Search in this order. Move to the next tier only when you find no viable
 candidate.
 
 1. **REUSE** — already in the repository or internally available.
-2. **USE** — an existing dependency solves it.
-3. **FORK** — an open-source project solves it. Vendor or fork.
+2. **Tier 2 — USE.** A maintained package solves the problem, either
+   already installed or added as a normal dependency. Check the project
+   manifest, the framework features, the built-in platform features, and
+   public registries (npm, PyPI, crates.io, and similar). If the code
+   stays as a normal dependency, USE wins. Only escalate to FORK when the
+   code must be copied, vendored, or patched.
+3. **Tier 3 — FORK.** No maintained package fits as-is. An open-source
+   project solves the problem, but you must copy, vendor, or patch it.
+   Check star count, contributor count, release rate, issue response
+   time, and license before you fork.
 4. **BUY** — a SaaS product solves it.
 5. **INTEGRATE** — an API solves it.
 6. **BUILD** — viable when no earlier tier fits. Cite the search.
@@ -97,10 +105,12 @@ candidate.
 
 ## Evidence matrix
 
-For every candidate, fill one row with the five components.
+For every candidate, fill one row.
+The row below is illustrative. Replace it with real candidates for each request.
 
-| Candidate | Reliability | Strategic value | Adaptability | TCO | Speed to value |
-|-----------|-------------|-----------------|--------------|-----|----------------|
+| Option | Coverage | Cost | Effort | Risk | Strategic value | Citation |
+|---|---|---|---|---|---|---|
+| express-rate-limit | full | LOW (MIT, free) | S (< 1 day) | LOW | none — commodity | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
 
 Label undifferentiated commodity slices as "Neutral (commodity)" or "Zero
 for commodity" in the strategic value column.
@@ -147,7 +157,7 @@ The recommendation must cite the five components. Output exactly this schema:
 
 1. **Context** — six answers plus constraints.
 2. **Tier search** — REUSE / USE / FORK / BUY / INTEGRATE / BUILD, with citations.
-3. **Evidence matrix** — top 3 viable candidates. Fill all 5 columns.
+3. **Evidence matrix** — top 3 viable candidates. Fill all columns.
 4. **Recommendation** — one tier or compound tiers.
 5. **Why this wins** — concrete reasons tied to the components.
 6. **Confidence** — HIGH, MEDIUM, or LOW. Use the rubric below.
@@ -205,8 +215,8 @@ channel is unavailable, record `unavailable: <reason>`.
 ## Agent versus skill
 
 The skill loads during normal sessions. A BUILD recommendation unlocks code
-generation. The agent enforces read-only research. Use it when research must
-be auditable or the read-only boundary must be guaranteed.
+generation. The agent requests read-only research where the host supports its
+permission block. Use it when research must be auditable.
 
 ## What to do next
 
@@ -234,8 +244,8 @@ similar decision:
   new dependency.
 - If two candidates are roughly equal, prefer the one with the safer license
   and higher bus factor.
-- Research must be read-only. Hard enforcement belongs in each host's
-  permission or sandbox configuration.
+- Research must be read-only. Pair the prompt with each host's permission or
+  sandbox configuration.
 - Report unavailable search channels instead of claiming complete coverage.
 - Citations must use the exact format. Citations without the exact query,
   URL, or path do not count.
