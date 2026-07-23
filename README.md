@@ -91,6 +91,12 @@ platform. The agent prompt asks for read-only research, and Claude Code and
 OpenCode honor the `permission:` block. On other hosts, configure host-level
 sandboxing, hooks, or permissions to deny writes and package installs.
 
+| Host | Skill support | Agent frontmatter | Permission model | User action |
+|---|---|---|---|---|
+| Claude Code | Native or manual | Yes | Honors `permission:` | Configure sandboxing for sensitive repos. |
+| OpenCode | Native or manual | Yes | Honors `permission:`. Last matching bash rule wins. | Keep `"*": ask` before specific deny rules. |
+| Other listed hosts | Varies | Varies | Do not assume `permission:` works. | Configure host sandboxing, hooks, or permissions. |
+
 ## Workflow
 
 The skill directs the agent through six search stages:
@@ -111,9 +117,9 @@ The skill directs the agent through six search stages:
 The agent fills an evidence matrix for every candidate. The row below is
 illustrative. Replace it with real candidates for each request.
 
-| Option | Coverage | Cost | Effort | Risk | Strategic value | Citation |
+| Option | Reliability | Strategic value | Adaptability | TCO | Speed to value | Citation |
 |---|---|---|---|---|---|---|
-| express-rate-limit | full | LOW (MIT, free) | S (< 1 day) | LOW | none — commodity | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
+| express-rate-limit | Maintained OSS middleware | none — commodity | Express-only, configurable | LOW (MIT, free) | S (< 1 day) | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
 
 The agent then returns one recommendation with this required schema:
 

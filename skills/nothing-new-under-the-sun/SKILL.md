@@ -108,9 +108,9 @@ candidate.
 For every candidate, fill one row.
 The row below is illustrative. Replace it with real candidates for each request.
 
-| Option | Coverage | Cost | Effort | Risk | Strategic value | Citation |
+| Option | Reliability | Strategic value | Adaptability | TCO | Speed to value | Citation |
 |---|---|---|---|---|---|---|
-| express-rate-limit | full | LOW (MIT, free) | S (< 1 day) | LOW | none — commodity | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
+| express-rate-limit | Maintained OSS middleware | none — commodity | Express-only, configurable | LOW (MIT, free) | S (< 1 day) | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
 
 Label undifferentiated commodity slices as "Neutral (commodity)" or "Zero
 for commodity" in the strategic value column.
@@ -168,6 +168,19 @@ Rubric: HIGH = complete context, exact citations, complete matrix, minor
 unknowns. MEDIUM = exact citations with known unknowns. LOW = missing
 context, weak citations, thin candidates, or large unknowns.
 
+Use this output template:
+
+```
+# Context
+# Tier search
+# Evidence matrix
+# Recommendation
+# Why this wins
+# Confidence
+# Re-evaluation trigger
+# Missing information
+```
+
 ## Compound recommendations
 
 When a request has a commodity slice and a differentiated slice, split the
@@ -214,9 +227,10 @@ channel is unavailable, record `unavailable: <reason>`.
 
 ## Agent versus skill
 
-The skill loads during normal sessions. A BUILD recommendation unlocks code
-generation. The agent requests read-only research where the host supports its
-permission block. Use it when research must be auditable.
+The skill loads during normal sessions. A BUILD recommendation can precede
+code generation, but the caller or user decides when implementation starts.
+The agent requests read-only research where the host supports its permission
+block. Use it when research must be auditable.
 
 ## What to do next
 
@@ -270,11 +284,11 @@ Should we build our own auth, or use Auth0?
 - Constraints: SOC 2, GDPR, likely SAML for enterprise.
 
 # Evidence matrix
-| Candidate | Reliability                | Strategic value       | Adaptability      | TCO (5 yr)                | Speed to value |
-|-----------|----------------------------|-----------------------|-------------------|---------------------------|----------------|
-| next-auth | 5M weekly (npm 2026-07-22) | Neutral (commodity)   | Medium (adapters) | ~$0 + 40 hr/yr            | 1 week         |
-| Auth0     | Billions/day (trust page)  | Weak                  | Medium (config)   | ~$25k/yr@10k MAU; scales  | 3 days         |
-| BUILD     | Unknown                    | Zero for commodity    | High (unneeded)   | 2000 hr + 500 hr/yr       | 6+ months      |
+| Option    | Reliability                | Strategic value       | Adaptability      | TCO                       | Speed to value | Citation |
+|-----------|----------------------------|-----------------------|-------------------|---------------------------|----------------|----------|
+| next-auth | 5M weekly (npm 2026-07-22) | Neutral (commodity)   | Medium (adapters) | ~$0 + 40 hr/yr            | 1 week         | `web_fetch: npmjs.com/package/next-auth on 2026-07-22` |
+| Auth0     | Billions/day (trust page)  | Weak                  | Medium (config)   | ~$25k/yr@10k MAU; scales  | 3 days         | `web_fetch: auth0.com on 2026-07-22` |
+| BUILD     | Unknown                    | Zero for commodity    | High (unneeded)   | 2000 hr + 500 hr/yr       | 6+ months      | `unavailable: estimate from team planning` |
 
 # Recommendation (compound)
 USE next-auth for the commodity slice. Small BUILD layer over next-auth
