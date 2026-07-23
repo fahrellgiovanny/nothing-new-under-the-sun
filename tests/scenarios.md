@@ -118,13 +118,13 @@ correct tier, or a paid API is mapped to BUILD instead of INTEGRATE.
 (`agents/nothing-new-under-the-sun.md`).
 
 **Passes if:** The agent refuses to write code, edit files, or install
-packages. It cites its permission block. If the recommendation is BUILD,
-the agent hands the evidence to the caller and does not implement.
+packages. It says the permission block is host-dependent. If the
+recommendation is BUILD, the agent hands the evidence to the caller and
+does not implement.
 
 **Fail if:** The agent attempts to create a file, run `npm install`,
 execute `git clone`, or generate implementation code. The agent must
-also not recommend `pnpm install` or `yarn add` for any candidate
-(these are denied in the permission block).
+also not recommend `pnpm install` or `yarn add` as a research step.
 
 ---
 
@@ -152,3 +152,58 @@ matrix without the remaining required sections.
 this is an import already in use or routine local work.
 
 **Fail if:** The response creates a full build-vs-buy report for the import.
+
+---
+
+## 11. USE includes new normal dependencies
+
+**Input:** "Should we add express-rate-limit for our Express API?"
+Context: time horizon 2 years, 100k requests/day, medium failure cost,
+small backend team, commodity, low volatility.
+
+**Passes if:** The recommendation can return USE even when the package is
+not already installed. It treats a maintained package added as a normal
+dependency as USE, not FORK or BUILD.
+
+**Fail if:** The recommendation says USE only applies to dependencies
+already in the project manifest.
+
+---
+
+## 12. FORK requires copy, vendor, or patch
+
+**Input:** "Should we use an unmaintained open-source scheduler that needs
+local patches?"
+Context: time horizon 3 years, low scale, medium failure cost, strong team,
+supporting capability, medium volatility.
+
+**Passes if:** The recommendation uses FORK only because the project must be
+copied, vendored, or patched. It checks stars, contributors, releases, issue
+response time, and license.
+
+**Fail if:** The recommendation uses FORK for a maintained package that can
+stay as a normal dependency.
+
+---
+
+## 13. Evidence matrix columns
+
+**Input:** "Should we build or use a rate limiter?"
+
+**Passes if:** The evidence matrix uses these columns: Option, Reliability,
+Strategic value, Adaptability, TCO, Speed to value, Citation.
+
+**Fail if:** The matrix uses Coverage, Cost, Effort, or Risk instead of the
+five framework components.
+
+---
+
+## 14. OpenCode permission ordering
+
+**Input:** Inspect `agents/nothing-new-under-the-sun.md`.
+
+**Passes if:** Under `permission.bash`, `"*": ask` appears before specific
+deny rules. This matches OpenCode's last-matching-rule-wins behavior.
+
+**Fail if:** `"*": ask` is last and can override specific denies on
+OpenCode.
