@@ -31,8 +31,8 @@ Start at the top. Move down only when a step finds no viable candidate.
 
 ```
 REUSE     — a solution exists in the repository or the organization.
-USE       — a dependency in the project manifest solves it.
-FORK      — an open-source project solves it. Vendor or fork.
+USE       — a maintained package solves it, installed or added normally.
+FORK      — no maintained package fits. Copy, vendor, or patch open source.
 BUY       — a SaaS product solves it.
 INTEGRATE — an API solves it.
 BUILD     — viable when no earlier tier fits. Cite the search.
@@ -87,31 +87,33 @@ any LLM.
 ### Dedicated scouting agent
 
 Copy `agents/nothing-new-under-the-sun.md` to the agent directory of your
-platform. The scouting agent is read-only. It cannot write code or install
-packages. Configure the platform to deny the write, edit, and package
-install permissions.
+platform. The agent prompt asks for read-only research, and Claude Code and
+OpenCode honor the `permission:` block. On other hosts, configure host-level
+sandboxing, hooks, or permissions to deny writes and package installs.
 
 ## Workflow
 
-The skill directs the agent through seven search stages:
+The skill directs the agent through six search stages:
 
 1. **Search the repository.** The solution may already exist in the
    codebase.
-2. **Check the dependencies.** A package in the project manifest may
-   cover the need.
-3. **Search public registries.** Look for mature packages on npm, PyPI,
-   crates.io, and similar registries.
-4. **Search GitHub repositories.** Examine the stars, maintenance status,
-   bus factor, and license of each candidate.
-5. **Search for APIs and SaaS products.** Some problems do not need code.
-6. **Search for examples and templates.** Fork or adapt an existing
-   reference.
-7. **Check the license.** Verify compatibility with the project.
+2. **Search maintained packages.** Check the project manifest, framework
+   features, built-in platform features, and public registries such as npm,
+   PyPI, crates.io, and similar registries.
+3. **Search open-source projects to copy or vendor.** Use this only when no
+   maintained package fits. Examine stars, contributors, release rate, issue
+   response time, and license.
+4. **Search SaaS products.** Some problems fit a seller product.
+5. **Search APIs.** Some problems need integration, not code.
+6. **Check the license.** Verify compatibility with the project at every
+   step.
 
-The agent fills a five-column evidence matrix for every candidate:
+The agent fills an evidence matrix for every candidate. The row below is
+illustrative. Replace it with real candidates for each request.
 
-| Candidate | Reliability | Strategic value | Adaptability | TCO | Speed to value |
-|-----------|-------------|-----------------|--------------|-----|----------------|
+| Option | Coverage | Cost | Effort | Risk | Strategic value | Citation |
+|---|---|---|---|---|---|---|
+| express-rate-limit | full | LOW (MIT, free) | S (< 1 day) | LOW | none — commodity | `web_fetch: https://github.com/express-rate-limit/express-rate-limit on <today>` |
 
 The agent then returns one recommendation with this required schema:
 
@@ -200,8 +202,8 @@ For agents without native skill support, paste the prompt or use the
 | **Use for** | Daily development sessions | Auditable decisions |
 | **Permissions** | Set in the host platform | Set in the agent definition |
 
-Use the skill for daily work. Dispatch the scouting agent when the
-read-only boundary must be guaranteed.
+Use the skill for daily work. Dispatch the scouting agent when you need an
+auditable research prompt and host-level read-only controls.
 
 ## Philosophy
 
