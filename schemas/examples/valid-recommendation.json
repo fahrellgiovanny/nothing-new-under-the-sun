@@ -1,0 +1,48 @@
+{
+  "context": {
+    "time_horizon": "5 years",
+    "scale": "10k MAU now, 500k projected; Auth0 cost steepens above ~200k MAU",
+    "failure_cost": "catastrophic",
+    "team_capability_and_fit": "strong web team; no identity engineer; wants to own product surface, not auth internals",
+    "commodity_or_core": "mostly commodity; enterprise SAML may be a differentiated slice",
+    "volatility": "medium",
+    "constraints": "SOC 2, GDPR, likely SAML for enterprise"
+  },
+  "tier_search": {
+    "reuse": "none in repository",
+    "use": "next-auth, maintained, 5M weekly downloads",
+    "fork": "not needed",
+    "buy": "Auth0 viable but per-MAU cost",
+    "integrate": "not applicable",
+    "build": "small layer over next-auth callbacks for enterprise SSO only"
+  },
+  "evidence_matrix": [
+    {
+      "option": "next-auth",
+      "reliability": "5M weekly downloads; no critical CVE in 2 years",
+      "strategic_value": "Neutral (commodity)",
+      "adaptability": "Medium; adapters cover OAuth, passkeys, SAML",
+      "tco": "~$0 license + 40 hr/yr",
+      "speed_to_value": "1 week",
+      "citation": "web_fetch: https://npmjs.com/package/next-auth on 2026-07-24"
+    },
+    {
+      "option": "Auth0",
+      "reliability": "billions/day per vendor trust page",
+      "strategic_value": "Weak",
+      "adaptability": "Medium; configuration-bound",
+      "tco": "~$25k/yr @ 10k MAU; scales with MAU",
+      "speed_to_value": "3 days",
+      "citation": "web_fetch: https://auth0.com on 2026-07-24"
+    }
+  ],
+  "recommendation": {
+    "tiers": ["USE", "BUILD"],
+    "compound": true
+  },
+  "why_this_wins": "next-auth is proven at scale, near-zero TCO, and one week to production; a small BUILD layer covers enterprise SSO only when the first enterprise customer asks for it.",
+  "confidence": "MEDIUM",
+  "reversibility": "two-way",
+  "re_evaluation_trigger": "100k MAU, first enterprise SSO request, or any next-auth security incident",
+  "missing_information": "growth curve for cost projection; SSO timing"
+}
