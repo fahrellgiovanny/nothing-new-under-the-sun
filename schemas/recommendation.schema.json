@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fahrellgiovanny/nothing-new-under-the-sun/schemas/recommendation.schema.json",
+  "title": "nothing-new-under-the-sun recommendation",
+  "description": "Structured form of the eight-section recommendation output emitted by the nothing-new-under-the-sun skill.",
+  "type": "object",
+  "required": [
+    "context",
+    "tier_search",
+    "evidence_matrix",
+    "recommendation",
+    "why_this_wins",
+    "confidence",
+    "re_evaluation_trigger",
+    "missing_information"
+  ],
+  "properties": {
+    "context": {
+      "description": "The six context answers plus constraints established before search.",
+      "type": "object"
+    },
+    "tier_search": {
+      "description": "The REUSE / USE / FORK / BUY / INTEGRATE / BUILD search with citations.",
+      "type": "object"
+    },
+    "evidence_matrix": {
+      "description": "One row per viable candidate. Every column must be filled.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "option",
+          "reliability",
+          "strategic_value",
+          "adaptability",
+          "tco",
+          "speed_to_value",
+          "citation"
+        ],
+        "properties": {
+          "option": { "type": "string" },
+          "reliability": { "type": "string" },
+          "strategic_value": { "type": "string" },
+          "adaptability": { "type": "string" },
+          "tco": { "type": "string" },
+          "speed_to_value": { "type": "string" },
+          "citation": {
+            "type": "string",
+            "pattern": "^(web_search|web_fetch|grep|read|shell|unavailable):"
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "description": "One tier or a compound set of tiers.",
+      "type": "object",
+      "required": ["tiers", "compound"],
+      "properties": {
+        "tiers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": ["REUSE", "USE", "FORK", "BUY", "INTEGRATE", "BUILD"]
+          }
+        },
+        "compound": { "type": "boolean" }
+      }
+    },
+    "why_this_wins": {
+      "description": "Concrete reasons tied to the five long-term-value components.",
+      "type": "string"
+    },
+    "confidence": {
+      "description": "Confidence rubric outcome. One-way doors require HIGH.",
+      "enum": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "re_evaluation_trigger": {
+      "description": "Date, scale, event, or failure mode that forces re-evaluation.",
+      "type": "string"
+    },
+    "missing_information": {
+      "description": "Unknowns that matter, as prose or a list.",
+      "type": ["string", "array"]
+    }
+  }
+}
