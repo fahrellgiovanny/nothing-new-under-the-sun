@@ -231,11 +231,18 @@ nothing-new-under-the-sun/
 ├── README.md
 ├── LICENSE
 ├── CHANGELOG.md
+├── .pre-commit-hooks.yaml
 ├── skills/
 │   └── nothing-new-under-the-sun/
 │       └── SKILL.md
 ├── agents/
 │   └── nothing-new-under-the-sun.md
+├── schemas/
+│   ├── recommendation.schema.json
+│   └── examples/
+│       └── valid-recommendation.json
+├── templates/
+│   └── recommendation.md
 └── tests/
     └── scenarios.md
 ```
@@ -267,8 +274,9 @@ Report issues and request features at
 
 ## Security
 
-- This skill contains only Markdown. It has no scripts, executables, or
-  runtime code.
+- The skill and agent prompts are Markdown only. They contain no scripts,
+  executables, or runtime code. The `schemas/` and `templates/` files are
+  data and configuration only.
 - WARNING: Agents run with full platform permissions. Configure each host
   to deny write, edit, and package install access during research.
 - Do not run candidate install commands during research.
