@@ -400,8 +400,9 @@ where sellers offer proven products).
 # Confidence
 HIGH.
 
-# Re-evaluation cadence
-Yearly. Some sub-components (ETA prediction, geocoding) may commoditize.
+# Re-evaluation trigger
+Yearly cadence, or sooner if a sub-component (ETA prediction, geocoding)
+commoditizes.
 
 # Missing information
 None material.
