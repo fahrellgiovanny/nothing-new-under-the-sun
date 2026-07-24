@@ -416,8 +416,8 @@ where sellers offer proven products).
 HIGH.
 
 # Re-evaluation trigger
-Yearly cadence, or sooner if a sub-component (ETA prediction, geocoding)
-commoditizes.
+A sub-component (ETA prediction, geocoding) commoditizes, a competitor's
+match quality overtakes ours, or annual review — whichever comes first.
 
 # Missing information
 None material.
