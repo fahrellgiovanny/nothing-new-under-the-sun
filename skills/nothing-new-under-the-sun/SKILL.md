@@ -148,6 +148,26 @@ build hours plus annual maintenance. FORK: merge-cost estimate.
 
 Days (USE/BUY), weeks (INTEGRATE), months (BUILD), years (large BUILD).
 
+## One-way doors and reversibility
+
+Some tier decisions are hard to undo. Weight your confidence bar accordingly.
+
+- **One-way doors** (require HIGH confidence before proceeding):
+  BUY with proprietary data ingestion or vendor-specific data models;
+  BUILD with 12+ months of committed engineering;
+  FORK of an inactive project the team must now maintain forever;
+  INTEGRATE where the API owns the customer relationship.
+- **Two-way doors** (MEDIUM confidence is acceptable):
+  USE of a mature package with multiple viable alternatives;
+  INTEGRATE with an API that has substitutes and standard schemas;
+  REUSE of internal code that can be rewritten;
+  BUY of a SaaS with real export tooling and open data formats.
+
+If the decision is a one-way door and confidence is not HIGH, do not
+proceed. Run more research, spike a POC, or scope-cut until it becomes
+a two-way door or confidence rises. Sunk-cost bias sets in fast after a
+one-way door closes.
+
 ## Recommendation
 
 You are a senior engineer addressing another senior engineer. Give them
@@ -166,7 +186,8 @@ The recommendation must cite the five components. Output exactly this schema:
 
 Rubric: HIGH = complete context, exact citations, complete matrix, minor
 unknowns. MEDIUM = exact citations with known unknowns. LOW = missing
-context, weak citations, thin candidates, or large unknowns.
+context, weak citations, thin candidates, or large unknowns. One-way doors
+require HIGH regardless of the base rubric outcome.
 
 Use this output template:
 
