@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.1.0 — 2026-07-24
+
+### Added
+- "One-way doors and reversibility" subsection. HIGH confidence now
+  required for irreversible tier choices (BUY with data lock-in,
+  multi-year BUILD, FORK of inactive project).
+- Expanded AI verdict mapping from 4 rows to 17 rows covering
+  embeddings, RAG, fine-tuning, agents, vector DBs, eval infra,
+  guardrails, and observability.
+- Team-fit sub-question under context question 4. Capability answers
+  "can we own it?"; fit answers "do we want to?" Both feed the
+  recommendation.
+- JSON Schema for the recommendation output (`schemas/recommendation.schema.json`).
+- Starter template for recommendations (`templates/recommendation.md`).
+- Pre-commit hook contract for downstream projects (`.pre-commit-hooks.yaml`).
+
+### Changed
+- Confidence rubric: one-way doors now require HIGH regardless of the
+  base rubric outcome.
+- Confidence output now records door type (one-way or two-way).
+- Re-evaluation trigger tied to door type: binding re-evaluation for
+  one-way doors happens before commit; post-commit reviews mitigation only.
+- Example A context updated to the new team-capability-and-fit shape.
+- Example B context updated; header fixed to "Re-evaluation trigger";
+  trigger rewritten as event-first.
+- AI verdict mapping dual-tier rows resolved by the copy/vendor/patch rule.
+- Scouting agent synced to v1.1.0 parity with the skill.
+- scenarios.md bumped to v1.1.0 with three new scenarios (15–17).
+
 ## v1.0.2
 
 ### Changed

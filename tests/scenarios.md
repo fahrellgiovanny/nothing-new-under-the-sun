@@ -1,6 +1,6 @@
-# Test scenarios — v1.0.2
+# Test scenarios — v1.1.0
 
-These scenarios verify that the v1.0.2 framework behaves correctly.
+These scenarios verify that the v1.1.0 framework behaves correctly.
 Run each scenario against the skill and the agent variant.
 
 ---
@@ -24,7 +24,7 @@ language like "this is better" without naming components.
 **Input:** "Should we build our own email sending?"
 
 **Passes if:** The response opens by establishing context — it asks about
-time horizon, scale, failure cost, team capability, commodity/core
+time horizon, scale, failure cost, team capability and fit, commodity/core
 classification, and volatility. It does not search for candidates before
 context is set.
 
@@ -101,14 +101,17 @@ candidate without first asking the context questions.
 Context: time horizon 5 years, 10k calls/day, medium failure cost, ML team
 available, commodity (transcription is not the product).
 
-**Passes if:** The AI verdict mapping is applied correctly:
-- Whisper self-hosted maps to FORK.
+**Passes if:** The AI verdict mapping and its dual-tier decision rule are
+applied correctly:
+- Self-hosted Whisper run as an unmodified dependency maps to USE; a
+  vendored or patched build (e.g. whisper.cpp with local changes) maps to FORK.
 - OpenAI Whisper API maps to INTEGRATE.
 - AssemblyAI maps to BUY.
-The recommendation uses the correct tier labels.
+The recommendation uses the correct tier labels, and for a two-tier row it
+cites the copy/vendor/patch test to pick one.
 
-**Fail if:** A self-hosted model is mapped to BUILD when FORK is the
-correct tier, or a paid API is mapped to BUILD instead of INTEGRATE.
+**Fail if:** A self-hosted model is mapped to BUILD, a paid API is mapped
+to BUILD instead of INTEGRATE, or a two-tier row is left unresolved.
 
 ---
 
@@ -207,3 +210,53 @@ deny rules. This matches OpenCode's last-matching-rule-wins behavior.
 
 **Fail if:** `"*": ask` is last and can override specific denies on
 OpenCode.
+
+---
+
+## 15. One-way door confidence gate (v1.1.0)
+
+**Input:** "Let's commit to a vendor that ingests all our data into its
+proprietary format. We're about 70% sure."
+Context: 5-year horizon, high failure cost, vendor offers no export tooling.
+
+**Passes if:** The recommendation classifies this as a one-way door
+(vendor-specific data model, no export) and refuses to proceed below HIGH
+confidence. It requires a POC, more research, or a scope-cut to raise
+confidence or make the door two-way before committing. It notes that the
+decisive re-evaluation must happen before commit, not after.
+
+**Fail if:** The recommendation proceeds at MEDIUM confidence, or treats
+irreversible data lock-in as a reversible choice.
+
+---
+
+## 16. Team capability versus team fit (v1.1.0)
+
+**Input:** "We could build our own observability stack — the team is
+strong enough."
+Context: strong platform team (high capability), but the team's mission is
+the product, not infrastructure, and it does not want to own on-call for a
+telemetry pipeline (low fit).
+
+**Passes if:** The recommendation separates capability from fit under
+context question 4. It notes that high capability with low fit favors USE
+or BUY over BUILD, and does not recommend BUILD on capability alone.
+
+**Fail if:** The recommendation recommends BUILD purely because the team
+is capable, ignoring ownership fit.
+
+---
+
+## 17. Expanded AI mapping — RAG and agents (v1.1.0)
+
+**Input:** "We want a chatbot over our internal docs with tool-calling."
+Context: commodity retrieval, standard needs, small team, retrieval quality
+is not the product.
+
+**Passes if:** Retrieval maps to a RAG framework as USE (LangChain,
+LlamaIndex, or Haystack) and orchestration maps to an agent framework as
+USE (LangGraph, CrewAI, and similar). BUILD appears only if retrieval
+quality or orchestration is explicitly the product.
+
+**Fail if:** The recommendation defaults to BUILD-ing a bespoke RAG
+pipeline or agent orchestration when a maintained framework fits.
