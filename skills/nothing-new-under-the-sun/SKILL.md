@@ -242,6 +242,20 @@ When the request involves AI or ML, map the form to a tier:
 | Guardrails / moderation (OpenAI mod, Guardrails AI, NeMo Guardrails) | INTEGRATE or USE |
 | Model observability (Helicone, Arize, WhyLabs) | BUY or USE |
 
+Rows that list two tiers ("X or Y") resolve by the same tier-search test
+used everywhere else:
+
+- **USE vs FORK** — USE if the model or framework runs as an unmodified
+  dependency. FORK if you must copy, vendor, or patch it, including
+  self-hosted model weights you maintain. (Example: `whisper` run as an
+  installed package is USE; a vendored, patched `whisper.cpp` is FORK.)
+- **FORK vs BUILD** — FORK if you adapt an existing model or trainer.
+  BUILD only if the model output itself is the differentiator.
+- **BUY vs INTEGRATE** — BUY if a managed product owns the operational
+  surface. INTEGRATE if you call an API and keep the surface yourself.
+- **BUY vs USE** — USE if you self-host open source. BUY if a managed or
+  finished product carries it for you.
+
 Bespoke AI is almost never the answer unless the model output itself is
 the differentiator. If the AI form is a commodity slice inside a larger
 request, use a compound recommendation.
