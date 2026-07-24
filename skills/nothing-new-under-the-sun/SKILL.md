@@ -214,14 +214,31 @@ BUILD for the differentiator slice.
 
 ## AI verdict mapping
 
-When the request involves an AI model:
+When the request involves AI or ML, map the form to a tier:
 
 | Form | Tier |
-|------|------|
-| Local model (library import) | USE |
-| Paid API | INTEGRATE |
-| Finished AI product | BUY |
-| Open-source AI framework | FORK |
+|---|---|
+| Local model imported as a library | USE |
+| Paid model API (chat, completion) | INTEGRATE |
+| Finished AI product (Cursor, Copilot, Claude Code) | BUY |
+| Open-source AI framework (Transformers, vLLM, Ollama) | USE or FORK |
+| Embeddings via API | INTEGRATE |
+| Embeddings self-hosted (SentenceTransformers, Instructor) | USE |
+| RAG framework (LangChain, LlamaIndex, Haystack) | USE |
+| Bespoke RAG pipeline | BUILD — only if retrieval quality is the product |
+| Fine-tuning via API (OpenAI, Anthropic) | INTEGRATE |
+| Fine-tuning self-hosted (LoRA, QLoRA on Llama, Mistral) | FORK or BUILD |
+| Agent framework (LangGraph, CrewAI, Mastra, AutoGen) | USE |
+| Bespoke agent orchestration | BUILD — only if orchestration IS the product |
+| Managed vector DB (Pinecone, Weaviate Cloud) | BUY or INTEGRATE |
+| Self-hosted vector DB (pgvector, Qdrant, Milvus) | USE |
+| Prompt / eval infrastructure (promptfoo, LangSmith, Braintrust) | USE or BUY |
+| Guardrails / moderation (OpenAI mod, Guardrails AI, NeMo Guardrails) | INTEGRATE or USE |
+| Model observability (Helicone, Arize, WhyLabs) | BUY or USE |
+
+Bespoke AI is almost never the answer unless the model output itself is
+the differentiator. If the AI form is a commodity slice inside a larger
+request, use a compound recommendation.
 
 ## Handle incomplete inputs
 
