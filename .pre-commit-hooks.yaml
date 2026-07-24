@@ -1,0 +1,18 @@
+# pre-commit hook contract for nothing-new-under-the-sun.
+#
+# This publishes the `nnuts-lint` hook contract NOW so downstream projects
+# can pin this repo and opt in early. The lint script itself lands in
+# v1.2.0. Until then, `entry` (hooks/nnuts-lint) does not exist in this
+# repo — referencing the hook before v1.2.0 will fail by design. The
+# contract (id, matched files, interface) is the shipping surface.
+- id: nnuts-lint
+  name: nothing-new-under-the-sun decision-doc lint
+  description: >-
+    Validate decision records under docs/decisions/ against the
+    nothing-new-under-the-sun recommendation output: eight required
+    sections, a filled evidence matrix, and the strict citation format.
+    Lint script ships in v1.2.0.
+  entry: hooks/nnuts-lint
+  language: script
+  files: '^docs/decisions/.*\.md$'
+  pass_filenames: true
