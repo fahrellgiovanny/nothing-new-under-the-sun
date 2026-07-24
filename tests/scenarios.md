@@ -24,7 +24,7 @@ language like "this is better" without naming components.
 **Input:** "Should we build our own email sending?"
 
 **Passes if:** The response opens by establishing context — it asks about
-time horizon, scale, failure cost, team capability, commodity/core
+time horizon, scale, failure cost, team capability and fit, commodity/core
 classification, and volatility. It does not search for candidates before
 context is set.
 
