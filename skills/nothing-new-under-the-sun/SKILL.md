@@ -13,7 +13,7 @@ description: >
 license: MIT
 metadata:
   author: fahrellgiovanny
-  version: "1.0.2"
+  version: "1.1.0"
 ---
 
 # There Is Nothing New Under The Sun
