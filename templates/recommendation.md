@@ -38,6 +38,7 @@
 # Confidence
 <!-- HIGH | MEDIUM | LOW per the rubric. One-way doors require HIGH. -->
 <HIGH | MEDIUM | LOW> — <one-line justification>
+Door: <one-way | two-way> — <why it is hard or easy to undo>
 
 # Re-evaluation trigger
 <date, scale, event, or failure mode that forces a re-look>

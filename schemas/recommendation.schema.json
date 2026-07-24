@@ -75,6 +75,10 @@
       "description": "Confidence rubric outcome. One-way doors require HIGH.",
       "enum": ["HIGH", "MEDIUM", "LOW"]
     },
+    "reversibility": {
+      "description": "Whether the tier choice is a one-way (hard to undo) or two-way (reversible) door. One-way doors require HIGH confidence.",
+      "enum": ["one-way", "two-way"]
+    },
     "re_evaluation_trigger": {
       "description": "Date, scale, event, or failure mode that forces re-evaluation.",
       "type": "string"
@@ -83,5 +87,17 @@
       "description": "Unknowns that matter, as prose or a list.",
       "type": ["string", "array"]
     }
-  }
+  },
+  "allOf": [
+    {
+      "$comment": "Encodes the v1.1.0 rule: a one-way door must be HIGH confidence regardless of the base rubric.",
+      "if": {
+        "required": ["reversibility"],
+        "properties": { "reversibility": { "const": "one-way" } }
+      },
+      "then": {
+        "properties": { "confidence": { "const": "HIGH" } }
+      }
+    }
+  ]
 }

@@ -186,7 +186,8 @@ The recommendation must cite the five components. Output exactly this schema:
 3. **Evidence matrix** — top 3 viable candidates. Fill all columns.
 4. **Recommendation** — one tier or compound tiers.
 5. **Why this wins** — concrete reasons tied to the components.
-6. **Confidence** — HIGH, MEDIUM, or LOW. Use the rubric below.
+6. **Confidence** — HIGH, MEDIUM, or LOW, plus the door type (one-way or
+   two-way). Use the rubric below.
 7. **Re-evaluation trigger** — date, scale, event, or failure mode.
 8. **Missing information** — unknowns that matter.
 
