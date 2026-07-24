@@ -393,7 +393,8 @@ asks for it.
 - Speed to value: one week to production.
 
 # Confidence
-MEDIUM. Re-evaluate at 100k MAU, first enterprise SSO request, or any
+MEDIUM. Two-way door: next-auth is swappable behind standard protocols and
+adapters. Re-evaluate at 100k MAU, first enterprise SSO request, or any
 next-auth security incident.
 
 # Missing information
@@ -411,7 +412,8 @@ algorithm?
 - Time horizon: 10 years.
 - Scale: 500k drivers, 20M riders, ~1M requests/hour.
 - Failure cost: catastrophic. Poor matching kills the marketplace.
-- Team capability: existing operations research and ML team.
+- Team capability and fit: existing operations research and ML team;
+  matching is the team's core mission, so ownership fit is high.
 - Commodity or core: core competency. Matching quality IS the product.
 - Volatility: high. Strategy evolves constantly.
 - Constraints: regional pricing and worker-classification laws.
@@ -442,7 +444,8 @@ where sellers offer proven products).
 - Speed to value: 6-12 months for MVP; compounding gains over 10 years.
 
 # Confidence
-HIGH.
+HIGH. One-way door: a multi-year committed BUILD that becomes the core of
+the product; HIGH confidence is required before proceeding.
 
 # Re-evaluation trigger
 A sub-component (ETA prediction, geocoding) commoditizes, a competitor's
