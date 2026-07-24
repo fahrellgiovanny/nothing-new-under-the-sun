@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/fahrellgiovanny/nothing-new-under-the-sun/schemas/recommendation.schema.json",
   "title": "nothing-new-under-the-sun recommendation",
-  "description": "Structured form of the eight-section recommendation output emitted by the nothing-new-under-the-sun skill.",
+  "description": "Structured form of the eight-section recommendation output emitted by the nothing-new-under-the-sun skill. Door reversibility is recorded alongside confidence (section 6).",
   "type": "object",
   "required": [
     "context",
