@@ -174,6 +174,13 @@ proceed. Run more research, spike a POC, or scope-cut until it becomes
 a two-way door or confidence rises. Sunk-cost bias sets in fast after a
 one-way door closes.
 
+Match the re-evaluation trigger (output section 7) to the door type. For a
+two-way door, the trigger is a cheap switch point after you ship — you can
+still change tiers. For a one-way door, the decisive re-evaluation happens
+*before* you commit; it is the POC, spike, or scope-cut above. After a
+one-way door closes, the trigger reviews mitigation and exit cost, not a
+free reversal.
+
 ## Recommendation
 
 You are a senior engineer addressing another senior engineer. Give them
