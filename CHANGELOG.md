@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.0 — 2026-07-24
+
+### Added
+- "One-way doors and reversibility" subsection. HIGH confidence now
+  required for irreversible tier choices (BUY with data lock-in,
+  multi-year BUILD, FORK of inactive project).
+- Expanded AI verdict mapping from 4 rows to 17 rows covering
+  embeddings, RAG, fine-tuning, agents, vector DBs, eval infra,
+  guardrails, and observability.
+- Team-fit sub-question under context question 4. Capability answers
+  "can we own it?"; fit answers "do we want to?" Both feed the
+  recommendation.
+
+### Changed
+- Confidence rubric: one-way doors now require HIGH regardless of the
+  base rubric outcome.
+- Example A context updated to the new team-capability-and-fit shape.
+
 ## v1.0.2
 
 ### Changed
