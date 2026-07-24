@@ -61,8 +61,14 @@ question cannot be answered, ask the user before you continue.
    best answer would change.
 3. **Failure cost** — what breaks if this fails? What is the business
    impact?
-4. **Team capability** — does the team have the skill, time, and domain
-   knowledge to build, maintain, and operate it?
+4. **Team capability and fit** —
+   a. *Capability:* does the team have the skill, time, and domain
+      knowledge to build, maintain, and operate it for the full time
+      horizon?
+   b. *Fit:* does the team want to own it? Does ownership match team
+      identity and mission? Built-and-resented is worse than
+      bought-and-managed. If capability is high but fit is low, favor
+      USE or BUY over BUILD.
 5. **Commodity or core** — see next section.
 6. **Volatility** — how fast does the strategy or technology change?
 
@@ -315,7 +321,8 @@ Should we build our own auth, or use Auth0?
 - Time horizon: 5 years.
 - Scale: 10k MAU now, 500k projected. Auth0 cost steepens above ~200k MAU.
 - Failure cost: catastrophic.
-- Team capability: strong web team; no identity engineer.
+- Team capability and fit: strong web team; no identity engineer;
+  team wants to own product surface, not auth internals.
 - Commodity or core: mostly commodity; enterprise SAML may be a
   differentiated slice.
 - Volatility: medium.
